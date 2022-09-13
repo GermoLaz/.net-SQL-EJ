@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CursoModelStoreContainer" CdmEntityContainer="AlumnosEntities">
+    <EntitySetMapping Name="Course">
+      <EntityTypeMapping TypeName="CursoModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="CursoModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="admissinDate" ColumnName="admissinDate" />
+          <ScalarProperty Name="career" ColumnName="career" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentXCourse">
+      <EntityTypeMapping TypeName="CursoModel.StudentXCourse">
+        <MappingFragment StoreEntitySet="StudentXCourse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="CursoModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherXCourse">
+      <EntityTypeMapping TypeName="CursoModel.TeacherXCourse">
+        <MappingFragment StoreEntitySet="TeacherXCourse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="teacherId" ColumnName="teacherId" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

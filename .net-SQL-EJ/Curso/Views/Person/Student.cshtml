@@ -1,0 +1,121 @@
+﻿@model Cursos.Models.Student
+@{
+    ViewBag.Title = "Cargar Alumno";
+}
+
+<h2>Cargar Estudiante</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                @using (Html.BeginForm("Student", "Person", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.id)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.name)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.name, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.lastName)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.lastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.lastName, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.DNI)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.DNI, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DNI, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.birthDate)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.birthDate, "{0:d MMM yyyy}", new { placeholder = "Ej: 01/01/2020", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.birthDate, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.gender)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.DropDownList("gender", null, " ", new { @class = "form-control", @style = "width: 100%; height: 30px;" })
+                                @Html.ValidationMessageFor(model => model.gender, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.admissionDate)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.admissionDate, "{0:d MMM yyyy}", new { placeholder = "Ej: 01/01/2020", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.admissionDate, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.career)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.career, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.career, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.address)
+                            </div>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.address, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-title" style="text-align: center;">
+                        <button type="submit" class="btn btn-primary" style=" height: 50px; width: 138px; font-size: 17px; ">
+                            Enviar <i class="fa fa-cart-plus" style="padding-left: 10px;"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.Mensaje != "" && ViewBag.Mensaje != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Mensaje");
+        };
+    </script>
+}

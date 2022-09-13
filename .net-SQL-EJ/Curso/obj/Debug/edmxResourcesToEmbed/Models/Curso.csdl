@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CursoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentXCourse" Relationship="Self.FK__StudentXC__cours__4222D4EF" FromRole="Course" ToRole="StudentXCourse" />
+    <NavigationProperty Name="TeacherXCourse" Relationship="Self.FK__TeacherXC__cours__45F365D3" FromRole="Course" ToRole="TeacherXCourse" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dni" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="birthDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="admissinDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="career" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentXCourse" Relationship="Self.FK__StudentXC__stude__4316F928" FromRole="Student" ToRole="StudentXCourse" />
+  </EntityType>
+  <EntityType Name="StudentXCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseId" Type="Int32" Nullable="false" />
+    <Property Name="studentId" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="semester" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK__StudentXC__cours__4222D4EF" FromRole="StudentXCourse" ToRole="Course" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__StudentXC__stude__4316F928" FromRole="StudentXCourse" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dni" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="birthDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TeacherXCourse" Relationship="Self.FK__TeacherXC__teach__46E78A0C" FromRole="Teacher" ToRole="TeacherXCourse" />
+  </EntityType>
+  <EntityType Name="TeacherXCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseId" Type="Int32" Nullable="false" />
+    <Property Name="teacherId" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="semester" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK__TeacherXC__cours__45F365D3" FromRole="TeacherXCourse" ToRole="Course" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__TeacherXC__teach__46E78A0C" FromRole="TeacherXCourse" ToRole="Teacher" />
+  </EntityType>
+  <Association Name="FK__StudentXC__cours__4222D4EF">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="StudentXCourse" Type="Self.StudentXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StudentXCourse">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherXC__cours__45F365D3">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="TeacherXCourse" Type="Self.TeacherXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TeacherXCourse">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentXC__stude__4316F928">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentXCourse" Type="Self.StudentXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StudentXCourse">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherXC__teach__46E78A0C">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="TeacherXCourse" Type="Self.TeacherXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TeacherXCourse">
+        <PropertyRef Name="teacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlumnosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Course" EntityType="Self.Course" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="StudentXCourse" EntityType="Self.StudentXCourse" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+    <EntitySet Name="TeacherXCourse" EntityType="Self.TeacherXCourse" />
+    <AssociationSet Name="FK__StudentXC__cours__4222D4EF" Association="Self.FK__StudentXC__cours__4222D4EF">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="StudentXCourse" EntitySet="StudentXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherXC__cours__45F365D3" Association="Self.FK__TeacherXC__cours__45F365D3">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="TeacherXCourse" EntitySet="TeacherXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentXC__stude__4316F928" Association="Self.FK__StudentXC__stude__4316F928">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentXCourse" EntitySet="StudentXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherXC__teach__46E78A0C" Association="Self.FK__TeacherXC__teach__46E78A0C">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="TeacherXCourse" EntitySet="TeacherXCourse" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CursoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="dni" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="birthDate" Type="varchar" MaxLength="10" />
+    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="admissinDate" Type="varchar" MaxLength="10" />
+    <Property Name="career" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="StudentXCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+    <Property Name="studentId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="semester" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="dni" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="birthDate" Type="varchar" MaxLength="10" />
+    <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeacherXCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseId" Type="int" Nullable="false" />
+    <Property Name="teacherId" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="semester" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__StudentXC__cours__4222D4EF">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="StudentXCourse" Type="Self.StudentXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StudentXCourse">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentXC__stude__4316F928">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentXCourse" Type="Self.StudentXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StudentXCourse">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherXC__cours__45F365D3">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="TeacherXCourse" Type="Self.TeacherXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TeacherXCourse">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherXC__teach__46E78A0C">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="TeacherXCourse" Type="Self.TeacherXCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TeacherXCourse">
+        <PropertyRef Name="teacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CursoModelStoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentXCourse" EntityType="Self.StudentXCourse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeacherXCourse" EntityType="Self.TeacherXCourse" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__StudentXC__cours__4222D4EF" Association="Self.FK__StudentXC__cours__4222D4EF">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="StudentXCourse" EntitySet="StudentXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentXC__stude__4316F928" Association="Self.FK__StudentXC__stude__4316F928">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentXCourse" EntitySet="StudentXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherXC__cours__45F365D3" Association="Self.FK__TeacherXC__cours__45F365D3">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="TeacherXCourse" EntitySet="TeacherXCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherXC__teach__46E78A0C" Association="Self.FK__TeacherXC__teach__46E78A0C">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="TeacherXCourse" EntitySet="TeacherXCourse" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
